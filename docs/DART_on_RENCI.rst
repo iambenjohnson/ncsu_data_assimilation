@@ -1,4 +1,6 @@
 Running DART-ROMS on RENCI. CNAPS example
+============
+
 
 **1) Clone the repo**
 
