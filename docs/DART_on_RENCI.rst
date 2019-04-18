@@ -4,8 +4,9 @@ Running DART-ROMS on RENCI. CNAPS example
 
 **1) Clone the repo**
 
-.. code-block:: bash
+```bash
     git clone https://github.ncsu.edu/rhe/Data-Assimilation.git
+```
 
 **2) Go inside the ROMS directory**
 
