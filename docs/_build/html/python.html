@@ -1,0 +1,197 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Python &#8212; NCSU Data Assimilation 0.1.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Localization" href="localization.html" />
+    <link rel="prev" title="Namelists" href="namelists.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="python">
+<h1>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="anaconda">
+<h2>Anaconda<a class="headerlink" href="#anaconda" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="configure-the-environment">
+<h3>Configure the Environment<a class="headerlink" href="#configure-the-environment" title="Permalink to this headline">¶</a></h3>
+<p>We use a package manager known as Anaconda to install the necessary
+python packages and configure them correctly (since the packages have
+dependencies) .</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">repo</span><span class="o">.</span><span class="n">anaconda</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">miniconda</span><span class="o">/</span><span class="n">Miniconda2</span><span class="o">-</span><span class="n">latest</span><span class="o">-</span><span class="n">Linux</span><span class="o">-</span><span class="n">x86_64</span><span class="o">.</span><span class="n">sh</span>
+<span class="o">./</span><span class="n">Miniconda2</span><span class="o">-</span><span class="n">latest</span><span class="o">-</span><span class="n">Linux</span><span class="o">-</span><span class="n">x86_64</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+<p>Once anaconda is installed we will use it to download the appropriate
+python packages and configure an environment with them. The environment
+is actually a directory with a particular configuration of packages.
+Modifying one environment will not affect other environments.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">create</span> <span class="o">-</span><span class="n">n</span> <span class="n">renci_env</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">python</span> <span class="n">numpy</span> <span class="n">scipy</span> <span class="n">matplotlib</span> <span class="n">netcdf4</span> <span class="n">cartopy</span> <span class="n">docutils</span> <span class="n">sphinx</span> <span class="n">sphinx</span><span class="o">-</span><span class="n">fortran</span> <span class="n">h5py</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">-n</span></code> flag is used to indicate the name of the environment (in this
+case <code class="docutils literal notranslate"><span class="pre">renci_env</span></code>) and the <code class="docutils literal notranslate"><span class="pre">-c</span></code> flag is used to indicate which conda
+channel the packages will be downloaded from (in this case
+<code class="docutils literal notranslate"><span class="pre">conda-forge</span></code>).</p>
+</div>
+<div class="section" id="activate-the-environment">
+<h3>Activate the Environment<a class="headerlink" href="#activate-the-environment" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="n">activate</span> <span class="n">renci_env</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="deactivate-the-environment">
+<h3>Deactivate the Environment<a class="headerlink" href="#deactivate-the-environment" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="n">deactivate</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="remove-the-environment">
+<h3>Remove the Environment<a class="headerlink" href="#remove-the-environment" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">env</span> <span class="n">remove</span> <span class="o">-</span><span class="n">n</span> <span class="n">renci_env</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="sphinx">
+<h2>Sphinx<a class="headerlink" href="#sphinx" title="Permalink to this headline">¶</a></h2>
+<p>We use a tool known as Sphinx to create this documentation. Sphinx
+automates a lot of the documentation process by importing python modules
+and converting their docstrings into output formats such as HTML or
+LaTeX as long as the docstrings are in accordance with a markup syntax
+known as reStructuredText.</p>
+<p>Sphinx and its extensions also parse code snippets and automatically
+employ syntax highlighting when outputting HTML documentation.</p>
+<p>Once we have the environment created and activated we can use a utility,
+<code class="docutils literal notranslate"><span class="pre">sphinx-quickstart</span></code>, to start the documentation.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">docs</span>
+<span class="n">cd</span> <span class="n">docs</span>
+<span class="n">sphinx</span><span class="o">-</span><span class="n">quickstart</span>
+</pre></div>
+</div>
+<p>We use most of the <code class="docutils literal notranslate"><span class="pre">sphinx-quickstart</span></code> default settings for our
+documentation. However, two of the options that are not enabled by
+default are useful for our case.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">autodoc</span><span class="p">:</span> <span class="n">automatically</span> <span class="n">insert</span> <span class="n">docstrings</span> <span class="kn">from</span> <span class="nn">modules</span> <span class="p">(</span><span class="n">y</span><span class="o">/</span><span class="n">n</span><span class="p">)</span> <span class="p">[</span><span class="n">n</span><span class="p">]:</span> <span class="n">y</span>
+<span class="n">mathjax</span><span class="p">:</span> <span class="n">include</span> <span class="n">math</span><span class="p">,</span> <span class="n">rendered</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">browser</span> <span class="n">by</span> <span class="n">MathJax</span> <span class="p">(</span><span class="n">y</span><span class="o">/</span><span class="n">n</span><span class="p">)</span> <span class="p">[</span><span class="n">n</span><span class="p">]:</span> <span class="n">y</span>
+</pre></div>
+</div>
+<p>Since our code is written in python and the docstrings from the modules
+are written in reStructuredText, we want Sphinx to automatically insert
+the docstrings into the documentation by enabling <code class="docutils literal notranslate"><span class="pre">autodoc</span></code>.</p>
+<p>Additionally, since there are various formulae that we describe from the
+data assimilation literature and from the DART documentation, we want
+Sphinx to render them by enabling <code class="docutils literal notranslate"><span class="pre">mathjax</span></code>.</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/OOMG_white_three_color_200px.png" alt="Logo"/>
+            </a></p>
+<h1 class="logo"><a href="index.html">NCSU Data Assimilation</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="namelists.html">Namelists</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Python</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#anaconda">Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sphinx">Sphinx</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="localization.html">Localization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="matlab.html">MATLAB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="namelists.html" title="previous chapter">Namelists</a></li>
+      <li>Next: <a href="localization.html" title="next chapter">Localization</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Ocean Observing and Modeling Group.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/python.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

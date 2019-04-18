@@ -1,0 +1,165 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Namelists &#8212; NCSU Data Assimilation 0.1.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Python" href="python.html" />
+    <link rel="prev" title="Installation" href="installation.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="namelists">
+<h1>Namelists<a class="headerlink" href="#namelists" title="Permalink to this headline">¶</a></h1>
+<p>Properly configured namelists are essential for getting DART to work
+suitably.</p>
+<p>Tim Hoar mentioned that in order to get the nominal performance from
+<code class="docutils literal notranslate"><span class="pre">obs_diag</span></code>, certain namelist options must be set properly.</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="p">&amp;</span><span class="n">filter_nml</span>
+    <span class="n">num_output_obs_members</span>   <span class="o">=</span> <span class="mi">31</span><span class="p">,</span>
+    <span class="n">num_output_state_members</span> <span class="o">=</span> <span class="mi">31</span><span class="p">,</span>
+
+    <span class="n">inf_flavor</span>               <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="n">inf_damping</span>              <span class="o">=</span> <span class="mf">0.9</span><span class="p">,</span>
+    <span class="n">inf_sd_lower_bound</span>       <span class="o">=</span> <span class="mf">0.6</span><span class="p">,</span>
+    <span class="n">inf_sd_max_change</span>        <span class="o">=</span> <span class="mf">1.05</span><span class="p">,</span>
+<span class="o">/</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">num_output_obs_members</span></code> and <code class="docutils literal notranslate"><span class="pre">num_output_state_members</span></code> can be set
+to zero and <code class="code docutils literal notranslate"><span class="pre">obs_diag</span></code> will still run but if we want the full
+suite of diagnostic scripts to run these options should be set to the
+correct number of ensemble members.</p>
+<p>Since the Pressure Recording Inverted Echo Sounder (PIES) array is
+moored at a fixed spot in our domain, <code class="docutils literal notranslate"><span class="pre">inf_flavor</span></code> should be set
+to one of the adaptive inflation flavors. There are two such flavors:
+option <code class="docutils literal notranslate"><span class="pre">2</span></code> is “Spatially-varying state space inflation” and option
+<code class="docutils literal notranslate"><span class="pre">5</span></code> is “Enhanced Spatially-varying state space inflation.” Option
+<code class="docutils literal notranslate"><span class="pre">5</span></code> is the setting that Moha El Gharamti recommended. It employs a
+different parametric distribution – an Inverse Gamma rather than a
+Gaussian. But the DAReS group suggested  that we might need to try both
+<code class="docutils literal notranslate"><span class="pre">2</span></code> and <code class="docutils literal notranslate"><span class="pre">5</span></code>.</p>
+<p>When using adaptive inflation <code class="docutils literal notranslate"><span class="pre">inf_damping</span></code> should be set to 0.9
+initially (slow damping) and then possibly modified after examining the
+priors. <strong>Note well:</strong> If inf_damping is set to 0, inflation will be
+disabled.</p>
+<p>Additionally, when using adaptive inflation, the <code class="docutils literal notranslate"><span class="pre">inf_sd\*</span></code>
+options are configurable and should be tuned. <code class="docutils literal notranslate"><span class="pre">inf_sd_lower_bound</span></code>
+should be set to 0.6 initially – this option is only read when
+<code class="docutils literal notranslate"><span class="pre">inf_flavor</span></code> is set to 5. <code class="docutils literal notranslate"><span class="pre">inf_sd_max_change</span></code> should be set
+to 1.05 initially.</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="p">&amp;</span><span class="n">obs_diag_nml</span>
+    <span class="n">time_to_skip</span>             <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+<span class="o">/</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">time_to_skip</span></code> can be set to exclude spin up time from the diagnostic
+period using <code class="docutils literal notranslate"><span class="pre">YYYY,</span> <span class="pre">MM,</span> <span class="pre">DY,</span> <span class="pre">HR,</span> <span class="pre">MIN,</span> <span class="pre">SEC</span></code> format.</p>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/OOMG_white_three_color_200px.png" alt="Logo"/>
+            </a></p>
+<h1 class="logo"><a href="index.html">NCSU Data Assimilation</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Namelists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="localization.html">Localization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="matlab.html">MATLAB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="installation.html" title="previous chapter">Installation</a></li>
+      <li>Next: <a href="python.html" title="next chapter">Python</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Ocean Observing and Modeling Group.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/namelists.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

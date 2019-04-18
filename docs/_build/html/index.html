@@ -1,0 +1,165 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>NCSU Data Assimilation &#8212; NCSU Data Assimilation 0.1.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="installation.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="ncsu-data-assimilation">
+<h1>NCSU Data Assimilation<a class="headerlink" href="#ncsu-data-assimilation" title="Permalink to this headline">¶</a></h1>
+<p>These pages document our use of the <a class="reference external" href="https://www.image.ucar.edu/DAReS/DART/">Data Assimilation Research
+Testbed (DART)</a> with the
+<a class="reference external" href="https://www.myroms.org/">Regional Ocean Modeling System (ROMS)</a>.
+While DART is designed to work on various flavors of UNIX/Linux, much of
+this documentation will focus specifically on our configuration of it on
+the <a class="reference external" href="https://renci.org/resources/">Hatteras Cluster</a> at the
+<a class="reference external" href="https://renci.org/">Renaissance Computing Institute</a>.</p>
+<p>Our suite of python scripts prepare super-observations (superobs) for
+assimilation and compare the ensemble assimilation algorithm with the
+<a class="reference external" href="https://www.myroms.org/wiki/4DVar_Tutorial_Introduction">4-Dimensional Variational (4D-Var)</a> assimilation
+algorithm included with ROMS.</p>
+<p><strong>Note well:</strong> When running diagnostics on DART output we should use the
+MATLAB scripts that come with the source code as much as possible. When
+I met with the <a class="reference external" href="http://www.image.ucar.edu/DAReS/DAReS">Data Assimilation Research Section (DAReS)</a>, Jeff Anderson pointed out
+that my ensemble rank histograms were produced incorrectly and would
+never flatten out because I did not add random samples from the
+observation error distribution <a class="footnote-reference" href="#id2" id="id1">[1]</a>. These types of subtle problems are
+already accounted for in the MATLAB scripts.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="namelists.html">Namelists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python.html">Python</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="python.html#anaconda">Anaconda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python.html#sphinx">Sphinx</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="localization.html">Localization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="matlab.html">MATLAB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="index-capabilities">
+<h1>Index Capabilities<a class="headerlink" href="#index-capabilities" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
+</ul>
+<table class="docutils footnote" frame="void" id="id2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Anderson, Jeffrey L. “An Ensemble Adjustment Kalman Filter for Data Assimilation.” <em>Monthly Weather Review</em> 129, no. 12 (December 1, 2001): 2884–2903. <a class="reference external" href="https://doi.org/10.1175/1520-0493(2001">https://doi.org/10.1175/1520-0493(2001</a>)129&lt;2884:AEAKFF&gt;2.0.CO;2.</td></tr>
+</tbody>
+</table>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="#">
+              <img class="logo" src="_static/OOMG_white_three_color_200px.png" alt="Logo"/>
+            </a></p>
+<h1 class="logo"><a href="#">NCSU Data Assimilation</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="namelists.html">Namelists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="localization.html">Localization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="matlab.html">MATLAB</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+      <li>Next: <a href="installation.html" title="next chapter">Installation</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Ocean Observing and Modeling Group.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
